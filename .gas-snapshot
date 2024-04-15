@@ -1,4 +1,4 @@
-TesterTest:testDeploy() (gas: 683845)
+TesterTest:testDeploy() (gas: 686245)
 TesterTest:testFailSetURIUnauth() (gas: 16251)
 TesterTest:testNotSafeOwner() (gas: 18839)
 TesterTest:testRegister() (gas: 44945)

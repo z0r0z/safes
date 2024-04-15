@@ -2,10 +2,8 @@
 pragma solidity ^0.8.19;
 
 /// @notice Tokenized ownership singleton for all Safe smart accounts.
-/// @dev Utilizes pseudo-ERC1155 accounting to represent Safes as IDs.
 contract Safes {
     error Unauthorized();
-
     error CallReverted();
 
     event TransferSingle(
@@ -35,9 +33,11 @@ contract Safes {
         uint256 id,
         uint256 amount,
         bytes calldata data
-    ) public {
+    ) public payable {
         if (balanceOf(msg.sender, id) != 0) {
-            bytes4 ret = IERC1155Receipt(to).onERC1155Received(msg.sender, from, id, amount, data);
+            bytes4 ret = IERC1155Receipt(to).onERC1155Received{value: msg.value}(
+                msg.sender, from, id, amount, data
+            );
             if (ret != IERC1155Receipt.onERC1155Received.selector) revert CallReverted();
             emit TransferSingle(msg.sender, from, to, id, amount);
         } else {
@@ -64,5 +64,6 @@ interface IOwner {
 interface IERC1155Receipt {
     function onERC1155Received(address, address, uint256, uint256, bytes calldata)
         external
+        payable
         returns (bytes4);
 }
