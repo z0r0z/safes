@@ -1,2 +1,6 @@
-Tester:test(string) (runs: 256, μ: 47817, ~: 24820)
-TesterTest:testTest() (gas: 27868)
+TesterTest:testDeploy() (gas: 683845)
+TesterTest:testFailSetURIUnauth() (gas: 16251)
+TesterTest:testNotSafeOwner() (gas: 18839)
+TesterTest:testRegister() (gas: 44945)
+TesterTest:testSafeOwner() (gas: 18809)
+TesterTest:testSetURI() (gas: 49343)
