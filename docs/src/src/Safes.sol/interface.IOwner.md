@@ -1,7 +1,5 @@
 # IOwner
-[Git Source](https://github.com/z0r0z/safes/blob/e093c9b23873cbb839b831481982ef0a1eb9d0ad/src/Safes.sol)
-
-Simple interface to return account ownership.
+[Git Source](https://github.com/z0r0z/safes/blob/23ee6262690b9ef9cb8b3d6a210d9860dad3f352/src/Safes.sol)
 
 
 ## Functions

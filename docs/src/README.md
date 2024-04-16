@@ -1,6 +1,8 @@
-# [zenplate](https://github.com/z0r0z/zenplate)  [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL-black.svg)](https://opensource.org/license/agpl-v3/) [![solidity](https://img.shields.io/badge/solidity-%5E0.8.25-black)](https://docs.soliditylang.org/en/v0.8.25/) [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-000000.svg)](https://getfoundry.sh/) ![tests](https://github.com/z0r0z/zenplate/actions/workflows/ci.yml/badge.svg)
+# [safes](https://github.com/z0r0z/safes)  [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL-black.svg)](https://opensource.org/license/agpl-v3/) [![solidity](https://img.shields.io/badge/solidity-%5E0.8.25-black)](https://docs.soliditylang.org/en/v0.8.25/) [![Foundry](https://img.shields.io/badge/Built%20with-Foundry-000000.svg)](https://getfoundry.sh/) ![tests](https://github.com/z0r0z/safes/actions/workflows/ci.yml/badge.svg)
 
-Simpler foundry template.
+Tokenized ownership of Safes using pseudo-ERC-1155 accounting and a singleton contract.
+
+Deployed to most blockchains: [0x000000000000F096B212bC59B56Be28B65a25f9d](https://etherscan.io/address/0x000000000000F096B212bC59B56Be28B65a25f9d#code)
 
 ## Getting Started
 
@@ -21,16 +23,12 @@ You can edit the CI script in [.github/workflows/ci.yml](./.github/workflows/ci.
 ```txt
 lib
 ├─ forge-std — https://github.com/foundry-rs/forge-std
+├─ solady — https://github.com/vectorized/solady
 src
-├─ Tester — Tester Contract
+├─ Safes — Safes Contract
 test
-└─ Tester.t - Test Contract
+└─ Safes.t - Test Contract
 ```
-
-## Notable Mentions
-
-- [femplate](https://github.com/refcell/femplate)
-- [prb-foundry-template](https://github.dev/PaulRBerg/foundry-template)
 
 ## Disclaimer
 

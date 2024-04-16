@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.8.19;
+pragma solidity 0.8.25;
 
-/// @notice Tokenized ownership singleton for all Safe smart accounts.
+/// @notice Tokenized ownership of Safes.
 contract Safes {
     error Unauthorized();
+
     error CallReverted();
 
     event TransferSingle(
@@ -11,6 +12,10 @@ contract Safes {
     );
 
     event URI(string metadata, uint256 indexed id);
+
+    string public constant name = "Safes";
+
+    string public constant symbol = unicode"🗝️";
 
     mapping(uint256 id => string metadata) internal _uri;
 
@@ -24,7 +29,7 @@ contract Safes {
     }
 
     function balanceOf(address owner, uint256 id) public view returns (uint256) {
-        return IOwner(address(uint160(id))).isOwner(owner) ? 1 : 0;
+        return ISafes(address(uint160(id))).isOwner(owner) ? 1 : 0;
     }
 
     function safeTransferFrom(
@@ -35,10 +40,10 @@ contract Safes {
         bytes calldata data
     ) public payable {
         if (balanceOf(msg.sender, id) != 0) {
-            bytes4 ret = IERC1155Receipt(to).onERC1155Received{value: msg.value}(
-                msg.sender, from, id, amount, data
-            );
-            if (ret != IERC1155Receipt.onERC1155Received.selector) revert CallReverted();
+            if (
+                ISafes(to).onERC1155Received{value: msg.value}(msg.sender, from, id, amount, data)
+                    != ISafes.onERC1155Received.selector
+            ) revert CallReverted();
             emit TransferSingle(msg.sender, from, to, id, amount);
         } else {
             revert Unauthorized();
@@ -46,7 +51,7 @@ contract Safes {
     }
 
     function register(address account) public {
-        address[] memory owners = IOwner(account).getOwners();
+        address[] memory owners = ISafes(account).getOwners();
         uint256 id = uint256(uint160(account));
         for (uint256 i; i != owners.length; ++i) {
             emit TransferSingle(msg.sender, address(0), owners[i], id, 1);
@@ -54,14 +59,9 @@ contract Safes {
     }
 }
 
-/// @notice Simple interface to return account ownership.
-interface IOwner {
+interface ISafes {
     function isOwner(address) external view returns (bool);
     function getOwners() external view returns (address[] memory);
-}
-
-/// @notice Simple interface for ERC1155 token receipts.
-interface IERC1155Receipt {
     function onERC1155Received(address, address, uint256, uint256, bytes calldata)
         external
         payable
