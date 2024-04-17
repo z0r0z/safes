@@ -2,7 +2,7 @@
 
 Tokenized ownership of Safes using pseudo-ERC-1155 accounting and a singleton contract.
 
-Deployed to most blockchains: [0x000000000000F096B212bC59B56Be28B65a25f9d](https://etherscan.io/address/0x000000000000F096B212bC59B56Be28B65a25f9d#code)
+Deployed to most blockchains: [0x000000000000F096B212bC59B56Be28B65a25f9d](https://contractscan.xyz/contract/0x000000000000F096B212bC59B56Be28B65a25f9d)
 
 ## Getting Started
 
